@@ -4,7 +4,7 @@ import { Pool } from "pg";
 
 let _pool: Pool | null = null;
 
-const useOrInitPool = () => {
+const initPool = () => {
     const connectionString = process.env.CONNECTION_STRING;
     if (!connectionString) {
         throw new Error("Missing CONNECTION_STRING");
@@ -22,7 +22,7 @@ export default async function page() {
     console.log('Product page');
     headers();
     
-    const pool = useOrInitPool();
+    const pool = initPool();
     const { rows } = await pool.query("select * from products");
 
     return <div>
