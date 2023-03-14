@@ -4,6 +4,12 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
+  webpack: (
+    config,
+  ) => {
+    config.externals = [...config.externals, 'pg-native'];
+    return config
+  },
 }
 
 module.exports = nextConfig
